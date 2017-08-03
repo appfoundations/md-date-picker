@@ -1,0 +1,34 @@
+{
+  "name": "md-date-picker",
+  "description": "Angular Material Customizable Date Picker Directive",
+  "version": "0.0.1",
+  "main": [
+    "./dist/md-date-picker.js",
+    "./dist/md-date-picker.css"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "scrollbar",
+    "directive",
+    "md-date-picker",
+    "material",
+    "angular"
+  ],
+  "authors": [
+    "roel b <roel.mail73@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/appfoundations",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.4.14"
+  }
+}

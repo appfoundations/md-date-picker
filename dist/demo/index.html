@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <title>AngularJS Material Date Picker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../md-date-picker.css" />
+</head>
+
+<body ng-controller="MainCtrl" layout="row" layout-align="center center">
+    <md-card style="width: 800px;">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                Demo
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <div layout>
+                <md-input-container flex>
+                    <label>Date</label>
+                    <md-date-picker ng-model="date" on-change="date = $date"></md-date-picker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Current Month Dates</label>
+                    <md-date-picker current-month-view-dates-only="true" ng-model="date" on-change="date = $date"></md-date-picker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Date (timeout)</label>
+                    <md-date-picker loading="loading" date-class="specialDaysClass" on-render="onRenderDatePicker($month, $year)" ng-model="date" on-change="date = $date"></md-date-picker>
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>Date ({{custom | date : 'mediumDate'}})</label>
+                    <md-date-picker ng-model="custom" format="mediumDate" on-change="custom = $date"></md-date-picker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Date (EEE, MMM dd, yyyy)</label>
+                    <md-date-picker ng-model="custom" format="EEE, MMM dd, yyyy" on-change="custom = $date"></md-date-picker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Placeholder</label>
+                    <md-date-picker placeholder="Select Date" ng-model="date2" on-change="date2 = $date"></md-date-picker>
+                </md-input-container>
+            </div>
+            <div layout>
+                <md-input-container flex>
+                    <label>Date (Weekdays Only)</label>
+                    <md-date-picker date-filter="isWeekDays" ng-model="weekdays" on-change="weekdays = $date"></md-date-picker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Date (Future Only)</label>
+                    <md-date-picker date-filter="isFutureDate" ng-model="future" on-change="future = $date"></md-date-picker>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>With Holidays</label>
+                    <md-date-picker placeholder="Select Date" ng-model="holidays" on-change="holidays = $date"></md-date-picker>
+                </md-input-container>
+            </div>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary">Submit Form</md-button>
+        </md-card-actions>
+    </md-card>
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.js"></script>
+
+
+    <!-- Your application bootstrap  -->
+    <script src="../md-date-picker.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
+<script>document.write('<script src="http://' + (location.host || "localhost").split(":")[0] + ':3001/livereload.js?snipver=1"></' + 'script>');</script>

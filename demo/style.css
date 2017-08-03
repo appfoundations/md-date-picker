@@ -1,0 +1,15 @@
+md-input-container small{
+  opacity: 0.5;
+  font-style: italic;
+  font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.75em;
+}
+.blue-day {
+  color: blue;
+  text-shadow: 0 0 1px #FFF;
+}
+.red-day {
+  color: red;
+  text-shadow: 0 0 1px #FFF;
+}
