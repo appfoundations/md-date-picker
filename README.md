@@ -2,7 +2,9 @@
 angular material customizable date picker directive/component  
 
 ## Demo
-
+### Live
+https://ipiz.herokuapp.com/md-date-picker/demo/index.html
+### Local
 - `clone repository`
 - `npm install`
 - `gulp serve`
