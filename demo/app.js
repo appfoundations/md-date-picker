@@ -10,9 +10,14 @@ app.controller('MainCtrl', function ($scope, $q, $timeout) {
   $scope.isWeekDays = function (d) {
     return [0, 6].indexOf(d.getDay()) == -1;
   }
-  $scope.onRenderDatePicker = function ($month, $year) {
+  /**
+   * @param $month the current month on the calendar picker view
+   * @param $year the current year on the calendar picker view
+   * @param $dates the current datess on the calendar picker view
+   */
+  $scope.onRenderDatePicker = function ($month, $year, $dates) {
     $scope.loading = true;
-    console.log('loading...');
+    console.log('loading... Month:' + $month + ' Year:' + $year, $dates);
     $scope.specialDaysClass = {};
 
 
@@ -32,12 +37,12 @@ app.controller('MainCtrl', function ($scope, $q, $timeout) {
           title: 'New Year',
         };
         // All Birthday
-        if (date.getMonth() === 4 && date.getDate() === 1) $scope.specialDaysClass[date.toLocaleDateString()] =  {
+        if (date.getMonth() === 4 && date.getDate() === 1) $scope.specialDaysClass[date.toLocaleDateString()] = {
           class: 'red-day',
           title: 'Labor Day',
         };
         // All Birthday
-        if (date.getMonth() === 8 && date.getDate() === 22) $scope.specialDaysClass[date.toLocaleDateString()] =  {
+        if (date.getMonth() === 8 && date.getDate() === 22) $scope.specialDaysClass[date.toLocaleDateString()] = {
           class: 'red-day',
           title: 'Birth Day',
         };
@@ -47,12 +52,12 @@ app.controller('MainCtrl', function ($scope, $q, $timeout) {
           title: 'Holloween',
         };
         // All Souls Day
-        if (date.getMonth() === 10 && date.getDate() === 1) $scope.specialDaysClass[date.toLocaleDateString()] =  {
+        if (date.getMonth() === 10 && date.getDate() === 1) $scope.specialDaysClass[date.toLocaleDateString()] = {
           class: 'red-day',
           title: 'All Souls Day',
         };
         // Xmass
-        if (date.getMonth() === 11 && date.getDate() === 25) $scope.specialDaysClass[date.toLocaleDateString()] ={
+        if (date.getMonth() === 11 && date.getDate() === 25) $scope.specialDaysClass[date.toLocaleDateString()] = {
           class: 'red-day',
           title: 'Xmass Day',
         };

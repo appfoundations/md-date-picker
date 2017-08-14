@@ -3,7 +3,10 @@ md-date-picker {
   display: block;
   color: #444;
 }
-
+.md-date-picker__input-container {
+  cursor: pointer;
+  outline: none;
+}
 .md-date-picker__calendar {
   &.md-date-picker__calendar-current-month-only{
     button:not(.md-date-picker__calendar-month-day) {

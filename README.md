@@ -36,7 +36,7 @@ $scope.specialDaysClass['1/1/2017'] = { // red color on new years day with title
   color: blue;
 }
 .red-day {
-  color: blue;
+  color: red;
 }
 ```
 ```html
@@ -58,6 +58,10 @@ $scope.specialDaysClass['1/1/2017'] = { // red color on new years day with title
 |format|String|attribute|Uses angular date filter to format date `format="EEE, MMM dd, yyyy"` refer to https://docs.angularjs.org/api/ng/filter/date|
 |dateClass|Object|One-way binding|Use to style dates `date-calss="{'12/25/2017':{class: 'red-font'}}"`|
 |loading|Boolean|One-way binding|Use to create overlay on calendar with md-linear-progress|
+|openOnFucos|Boolean|One-way binding|Use open picker when focused|
+|ngRequired|Boolean|One-way binding|Use set the date picker input required|
+|ngDisabled|Boolean|One-way binding|Use set the date picker input disabled|
+|showIcon|Boolean|One-way binding|show calendar icon|
 |placeholder|String|attribute|As input placeholder placeholder="Select Date"|
 |dateFilter|Function|One-way binding|Use as callback function to filter available dates, function should return `false` to be able to disable date. Example enable only Mondays in picker `function isAvailable(date) { return date.getDay() === 1;  }`|
 |currentMonthViewDatesOnly|Boolean|Event|Use to toggle displaying other Month dates in a current calendar view| 

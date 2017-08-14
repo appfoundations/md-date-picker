@@ -2,20 +2,24 @@
 
   const template = `
     <md-menu md-offset="0 -6px">
-      <div>
+      <div class="md-date-picker__input-container" role="button" ng-click="openMenuHandler($mdMenu, $event)" layout>
         <input
+          flex
+          flex-order="2"
           type="text"
-          ng-value="date ? (model | date : format) : null"
-          ng-click="openMenuHandler($mdMenu, $event)"
-          ng-focus="openMenuHandler($mdMenu, $event)"
+          ng-value="model ? (model | date : format) : null"
+          ng-disabled="ngDisabled"
+          ng-required="ngRequired"
+          ng-focus="openOnFocus ? openMenuHandler($mdMenu, $event) : null"
           ng-keypress="keypressMenuHandler($mdMenu, $event)"
           ng-keydown="keydownMenuHandler($mdMenu, $event)"
         />
+        <md-icon flex-order="5" ng-if="showIcon" style="display:inline-block;" aria-label="md-calendar" md-svg-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==" role="img"></md-icon>
       </div>
       <md-menu-content class="md-date-picker__md-menu-content">
         <div class="md-date-picker__calendar-container">
           <div layout class="md-date-picker__calendar-header">
-            <span flex ng-bind="date ? (model | date : format) : placeholder"></span>
+            <span flex ng-bind="model ? (model | date : format) : placeholder"></span>
             <button md-prevent-menu-close ng-click="changeMonthHandler(-1)">&lt;</button>
             <span class="md-date-picker__calendar-month-name" ng-bind="months[month]"></span>
             <span class="md-date-picker__calendar-month-name" ng-bind="year"></span>
@@ -70,15 +74,19 @@
     }
 
     $scope.selectDateHandler = (date) => {
-      this.onChange({ $date: date.object });
+      this.onChange({ $date: date ? date.object : null });
     }
 
     $scope.keypressMenuHandler = (menu, e) => e.which === 13 && menu.open(e);
-    $scope.keydownMenuHandler = (menu, e) => [9, 27].includes(e.which) && menu.close(e);
+    $scope.keydownMenuHandler = (menu, e) => {
+      [9, 27].includes(e.which) && menu.close(e);
+      [46, 8].includes(e.which) && this.onChange({ $date: null });
+      [90].includes(e.which) && e.ctrlKey && e.preventDefault();
+    }
 
     $scope.rebuildCalendar = () => {
       $scope.dates = buildCalendar($scope.month, $scope.year);
-      this.onRender({ $month: $scope.month, $year: $scope.year });
+      this.onRender({ $month: $scope.month, $year: $scope.year, $dates: $scope.dates });
     }
 
     // On change month(prev/next) button click
@@ -120,14 +128,19 @@
       if (c.dateFilter) $scope.dateFilter = c.dateFilter.currentValue || angular.noop;
       if (c.loading) $scope.loading = c.loading.currentValue;
       if (c.dateClass) $scope.dateClass = c.dateClass.currentValue || {};
+      if (c.showIcon) $scope.showIcon = c.showIcon.currentValue || false;
+      if (c.openOnFocus) $scope.openOnFocus = c.openOnFocus.currentValue || false;
+      if (c.ngDisabled) $scope.ngDisabled = c.ngDisabled.currentValue || false;
+      if (c.ngRequired) $scope.ngRequired = c.ngRequired.currentValue || false;
       if (c.ngModel) {
         const date = c.ngModel.currentValue;
         $scope.model = date;
         if (date) {
+          const shouldRender = $scope.month !== date.getMonth() || $scope.year !== date.getFullYear();
           $scope.month = date.getMonth();
           $scope.year = date.getFullYear();
           $scope.date = date.toLocaleDateString();
-          $scope.rebuildCalendar();
+          shouldRender && $scope.rebuildCalendar();
         }
       }
     }
@@ -211,6 +224,10 @@
   const component = {
     bindings: {
       ngModel: '<',
+      ngDisabled: '<',
+      ngRequired: '<',
+      openOnFocus: '<',
+      showIcon: '<',
       format: '@',
       placeholder: '@',
       loading: '<',
