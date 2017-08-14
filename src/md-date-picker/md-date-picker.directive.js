@@ -70,6 +70,7 @@
 
     // Open menu handler
     $scope.openMenuHandler = (menu, e) => {
+      if ($scope.ngDisabled) return e.preventDefault();
       menu.open(e);
     }
 

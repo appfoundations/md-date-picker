@@ -11,76 +11,77 @@
     <link rel="stylesheet" href="../md-date-picker.css" />
 </head>
 
-<body ng-controller="MainCtrl" layout="row" layout-align="center center">
+<body ng-controller="MainCtrl" layout="row" layout-align="center center" ng-cloak>
     <form>
-    <md-card style="width: 800px;">
-        <md-toolbar>
-            <div class="md-toolbar-tools">
-                Demo
-            </div>
-        </md-toolbar>
-        <md-card-content>
-            <div layout>
-                <md-input-container flex>
-                    <label>Date</label>
-                    <md-date-picker ng-model="date" on-change="date = $date"></md-date-picker>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Current Month Dates</label>
-                    <md-date-picker current-month-view-dates-only="true" ng-model="date" on-change="date = $date"></md-date-picker>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Date (timeout)</label>
-                    <md-date-picker show-icon="true" loading="loading" date-class="specialDaysClass" on-render="onRenderDatePicker($month, $year, $dates)" ng-model="date" on-change="date = $date"></md-date-picker>
-                </md-input-container>
-            </div>
-            <div layout>
-                <md-input-container flex>
-                    <label>Date ({{custom | date : 'mediumDate'}})</label>
-                    <md-date-picker ng-model="custom" format="mediumDate" on-change="custom = $date"></md-date-picker>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Date (EEE, MMM dd, yyyy)</label>
-                    <md-date-picker ng-model="custom" format="EEE, MMM dd, yyyy" on-change="custom = $date"></md-date-picker>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Placeholder</label>
-                    <md-date-picker placeholder="Select Date" ng-model="date2" on-change="date2 = $date"></md-date-picker>
-                </md-input-container>
-            </div>
-            <div layout>
-                <md-input-container flex>
-                    <label>Date (Weekdays Only)</label>
-                    <md-date-picker date-filter="isWeekDays" ng-model="weekdays" on-change="weekdays = $date"></md-date-picker>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Date (Future Only)</label>
-                    <md-date-picker ng-required="true" date-filter="isFutureDate" ng-model="future" on-change="future = $date"></md-date-picker>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Disabled</label>
-                    <md-date-picker ng-disabled="true" placeholder="Select Date" ng-model="holidays" on-change="holidays = $date"></md-date-picker>
-                </md-input-container>
-            </div>
-            <div layout>
-                <md-input-container flex>
-                    <label>Normal Input</label>
-                    <input />
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Rquired Input</label>
-                    <input required/>
-                </md-input-container>
-                <md-input-container flex>
-                    <label>Disabled Input</label>
-                    <input disabled/>
-                </md-input-container>
-            </div>
-        </md-card-content>
-        <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-raised md-primary" type="submit">Submit Form</md-button>
-        </md-card-actions>
-    </md-card>
+        <md-card style="width: 800px;">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    Demo
+                </div>
+            </md-toolbar>
+            <md-card-content>
+                <div layout>
+                    <md-input-container flex>
+                        <label>Date</label>
+                        <md-date-picker ng-model="date" on-change="date = $date"></md-date-picker>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Current Month Dates</label>
+                        <md-date-picker current-month-view-dates-only="true" ng-model="date" on-change="date = $date"></md-date-picker>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Date (timeout)</label>
+                        <md-date-picker show-icon="true" loading="loading" date-class="specialDaysClass" on-render="onRenderDatePicker($month, $year, $dates)"
+                            ng-model="date" on-change="date = $date"></md-date-picker>
+                    </md-input-container>
+                </div>
+                <div layout>
+                    <md-input-container flex>
+                        <label>Date ({{custom | date : 'mediumDate'}})</label>
+                        <md-date-picker ng-model="custom" format="mediumDate" on-change="custom = $date"></md-date-picker>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Date (EEE, MMM dd, yyyy)</label>
+                        <md-date-picker ng-model="custom" format="EEE, MMM dd, yyyy" on-change="custom = $date"></md-date-picker>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Placeholder</label>
+                        <md-date-picker placeholder="Select Date" ng-model="date2" on-change="date2 = $date"></md-date-picker>
+                    </md-input-container>
+                </div>
+                <div layout>
+                    <md-input-container flex>
+                        <label>Date (Weekdays Only)</label>
+                        <md-date-picker date-filter="isWeekDays" ng-model="weekdays" on-change="weekdays = $date"></md-date-picker>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Date (Future Only)</label>
+                        <md-date-picker ng-required="true" date-filter="isFutureDate" ng-model="future" on-change="future = $date"></md-date-picker>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Disabled</label>
+                        <md-date-picker ng-disabled="true" placeholder="Select Date" ng-model="holidays" on-change="holidays = $date"></md-date-picker>
+                    </md-input-container>
+                </div>
+                <div layout>
+                    <md-input-container flex>
+                        <label>Normal Input</label>
+                        <input />
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Rquired Input</label>
+                        <input required/>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Disabled Input</label>
+                        <input disabled/>
+                    </md-input-container>
+                </div>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" type="submit">Submit Form</md-button>
+            </md-card-actions>
+        </md-card>
     </form>
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>

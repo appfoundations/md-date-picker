@@ -38,6 +38,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     // Open menu handler
     $scope.openMenuHandler = function (menu, e) {
+      if ($scope.ngDisabled) return e.preventDefault();
       menu.open(e);
     };
 
