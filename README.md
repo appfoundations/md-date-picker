@@ -1,6 +1,9 @@
 # md-date-picker
 angular material customizable date picker directive/component  
 
+
+[![NPM](https://nodei.co/npm/md-date-picker.png)](https://npmjs.org/package/md-date-picker)
+
 ## Demo
 ### Live
 https://ipiz.herokuapp.com/md-date-picker/demo/index.html
