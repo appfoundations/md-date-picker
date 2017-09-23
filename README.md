@@ -15,6 +15,11 @@ https://ipiz.herokuapp.com/md-date-picker/demo/index.html
 ### Dependencies
 angularjs, angular material
 
+|Package|Versions|
+|---|---|
+|angular|>=1.4 <=1.6|
+|angular-material|1.x|
+
 ### usage
 ```shell
 bower install md-date-picker --save
