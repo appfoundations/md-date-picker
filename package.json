@@ -1,6 +1,6 @@
 {
   "name": "md-date-picker",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Angular Material Customizable Date Picker Directive",
   "main": "./index.js",
   "dependencies": {
@@ -35,7 +35,8 @@
     "streamqueue": "^1.1.1"
   },
   "scripts": {
-    "start": "gulp serve"
+    "start": "gulp serve",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",

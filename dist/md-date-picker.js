@@ -40,6 +40,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     $scope.openMenuHandler = function (menu, e) {
       if ($scope.ngDisabled) return e.preventDefault();
       menu.open(e);
+      resetView($scope.model);
     };
 
     $scope.selectDateHandler = function (date) {
@@ -108,15 +109,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (c.ngModel) {
         var _date = c.ngModel.currentValue;
         $scope.model = _date;
-        if (_date) {
-          var shouldRender = $scope.month !== _date.getMonth() || $scope.year !== _date.getFullYear();
-          $scope.month = _date.getMonth();
-          $scope.year = _date.getFullYear();
-          $scope.date = _date.toLocaleDateString();
-          shouldRender && $scope.rebuildCalendar();
-        }
+        resetView(_date);
+        $scope.date = _date ? _date.toLocaleDateString() : null;
       }
     };
+
+    function resetView(date) {
+      var dateView = date ? date : new Date();
+      var shouldRender = $scope.month !== dateView.getMonth() || $scope.year !== dateView.getFullYear();
+      $scope.month = dateView.getMonth();
+      $scope.year = dateView.getFullYear();
+      shouldRender && $scope.rebuildCalendar();
+    }
 
     // Utils
   }
