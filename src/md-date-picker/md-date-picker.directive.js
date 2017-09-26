@@ -72,6 +72,7 @@
     $scope.openMenuHandler = (menu, e) => {
       if ($scope.ngDisabled) return e.preventDefault();
       menu.open(e);
+      resetView($scope.model);
     }
 
     $scope.selectDateHandler = (date) => {
@@ -136,14 +137,17 @@
       if (c.ngModel) {
         const date = c.ngModel.currentValue;
         $scope.model = date;
-        if (date) {
-          const shouldRender = $scope.month !== date.getMonth() || $scope.year !== date.getFullYear();
-          $scope.month = date.getMonth();
-          $scope.year = date.getFullYear();
-          $scope.date = date.toLocaleDateString();
-          shouldRender && $scope.rebuildCalendar();
-        }
+        resetView(date);
+        $scope.date = date ? date.toLocaleDateString() : null;
       }
+    }
+
+    function resetView(date) {
+      const dateView = date ? date : new Date();
+      const shouldRender = $scope.month !== dateView.getMonth() || $scope.year !== dateView.getFullYear();
+      $scope.month = dateView.getMonth();
+      $scope.year = dateView.getFullYear();
+      shouldRender && $scope.rebuildCalendar();
     }
 
     // Utils
