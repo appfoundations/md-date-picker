@@ -16,7 +16,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 (function () {
 
   controller.$inject = ["$scope", "$filter", "$element", "$mdMenu"];
-  var template = '\n    <md-menu md-offset="0 -6px">\n      <div class="md-date-picker__input-container" role="button" ng-click="openMenuHandler($mdMenu, $event)" layout>\n        <input\n          flex\n          flex-order="2"\n          type="text"\n          ng-value="model ? (model | date : format) : null"\n          ng-disabled="ngDisabled"\n          ng-required="ngRequired"\n          ng-focus="openOnFocus ? openMenuHandler($mdMenu, $event) : null"\n          ng-keypress="keypressMenuHandler($mdMenu, $event)"\n          ng-keydown="keydownMenuHandler($mdMenu, $event)"\n        />\n        <md-icon flex-order="5" ng-if="showIcon" style="display:inline-block;" aria-label="md-calendar" md-svg-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==" role="img"></md-icon>\n      </div>\n      <md-menu-content class="md-date-picker__md-menu-content">\n        <div class="md-date-picker__calendar-container">\n          <div layout class="md-date-picker__calendar-header">\n            <span flex ng-bind="model ? (model | date : format) : placeholder"></span>\n            <button md-prevent-menu-close ng-click="changeMonthHandler(-1)">&lt;</button>\n            <span class="md-date-picker__calendar-month-name" ng-bind="months[month]"></span>\n            <span class="md-date-picker__calendar-month-name" ng-bind="year"></span>\n            <button md-prevent-menu-close ng-click="changeMonthHandler(1)">&gt;</button>\n          </div>\n          <div class="md-date-picker__calendar-names">\n            <span ng-repeat="(k,v) in days" ng-bind="::v"></span>\n          </div>\n          <div class="md-date-picker__calendar" ng-class="{\n            \'md-date-picker__calendar-current-month-only\': currentMonthViewDatesOnly,\n            \'md-date-picker__calendar-loading\': loading === true,\n          }">\n            <button \n              ng-repeat="d in dates" \n              ng-disabled="dateFilter(d.object) === false"\n              ng-class="{\n                \'md-date-picker__calendar-date-selected\' : date === d.date,\n                \'md-date-picker__calendar-month-day\' : month === d.month,\n                \'md-date-picker__calendar-today\': TODAY === d.date,\n              }" \n              title="{{dateClass[d.date].title}}"\n              ng-click="selectDateHandler(d)"\n            ><span ng-bind="::d.day" ng-class="dateClass[d.date].class || dateClass[d.date]"></span></button> \n            <div class="md-date-picker__calendar-loading-overlay" ng-if="loading === true">\n              <md-progress-linear md-mode="query"></md-progress-linear>\n            </div>\n          </div>\n        </div>\n      </md-menu-content>\n    </md-menu>\n  ';
+  var template = '\n    <md-menu md-offset="0 -6px">\n      <div class="md-date-picker__input-container" role="button" ng-click="openMenuHandler($mdMenu, $event)" layout>\n        <input\n          flex\n          flex-order="2"\n          type="text"\n          ng-model="inputModel"\n          ng-disabled="ngDisabled"\n          ng-required="ngRequired"\n          name="{{name}}"\n          ng-focus="openOnFocus ? openMenuHandler($mdMenu, $event) : null"\n          ng-keypress="keypressMenuHandler($mdMenu, $event)"\n          ng-keydown="keydownMenuHandler($mdMenu, $event)"\n        />\n        <md-icon flex-order="5" ng-if="showIcon" style="display:inline-block;" aria-label="md-calendar" md-svg-src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTkgM2gtMVYxaC0ydjJIOFYxSDZ2Mkg1Yy0xLjExIDAtMS45OS45LTEuOTkgMkwzIDE5YzAgMS4xLjg5IDIgMiAyaDE0YzEuMSAwIDItLjkgMi0yVjVjMC0xLjEtLjktMi0yLTJ6bTAgMTZINVY4aDE0djExek03IDEwaDV2NUg3eiIvPjwvc3ZnPg==" role="img"></md-icon>\n      </div>\n      <md-menu-content class="md-date-picker__md-menu-content">\n        <div class="md-date-picker__calendar-container">\n          <div layout class="md-date-picker__calendar-header">\n            <span flex ng-bind="model ? (model | date : format) : placeholder"></span>\n            <button md-prevent-menu-close ng-click="changeMonthHandler(-1)">&lt;</button>\n            <span class="md-date-picker__calendar-month-name" ng-bind="months[month]"></span>\n            <span class="md-date-picker__calendar-month-name" ng-bind="year"></span>\n            <button md-prevent-menu-close ng-click="changeMonthHandler(1)">&gt;</button>\n          </div>\n          <div class="md-date-picker__calendar-names">\n            <span ng-repeat="(k,v) in days" ng-bind="::v"></span>\n          </div>\n          <div class="md-date-picker__calendar" ng-class="{\n            \'md-date-picker__calendar-current-month-only\': currentMonthViewDatesOnly,\n            \'md-date-picker__calendar-loading\': loading === true,\n          }">\n            <button \n              ng-repeat="d in dates" \n              ng-disabled="dateFilter(d.object) === false"\n              ng-class="{\n                \'md-date-picker__calendar-date-selected\' : date === d.date,\n                \'md-date-picker__calendar-month-day\' : month === d.month,\n                \'md-date-picker__calendar-today\': TODAY === d.date,\n              }" \n              title="{{dateClass[d.date].title}}"\n              ng-click="selectDateHandler(d)"\n            ><span ng-bind="::d.day" ng-class="dateClass[d.date].class || dateClass[d.date]"></span></button> \n            <div class="md-date-picker__calendar-loading-overlay" ng-if="loading === true">\n              <md-progress-linear md-mode="query"></md-progress-linear>\n            </div>\n          </div>\n        </div>\n      </md-menu-content>\n    </md-menu>\n  ';
 
   /* @ngInject */
   function controller($scope, $filter, $element, $mdMenu) {
@@ -24,6 +24,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     var date = new Date();
     var dateFilter = $filter('date');
+
+    // Because this is required for ng-required and ng-diabled to work the validation css
+    $scope.inputModel = '';
 
     // Set deault view to current date, this model use as current calendar month view
     $scope.month = date.getMonth();
@@ -98,6 +101,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$onChanges = function (c) {
       if (c.currentMonthViewDatesOnly) $scope.currentMonthViewDatesOnly = c.currentMonthViewDatesOnly.currentValue;
       if (c.placeholder) $element.find('input').attr('placeholder', c.placeholder.currentValue);
+      if (c.name) $scope.name = c.name.currentValue;
       if (c.format) $scope.format = c.format.currentValue || 'shortDate';
       if (c.dateFilter) $scope.dateFilter = c.dateFilter.currentValue || angular.noop;
       if (c.loading) $scope.loading = c.loading.currentValue;
@@ -109,6 +113,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (c.ngModel) {
         var _date = c.ngModel.currentValue;
         $scope.model = _date;
+        $scope.inputModel = $scope.model ? dateFilter($scope.model, $scope.format) : null;
         resetView(_date);
         $scope.date = _date ? _date.toLocaleDateString() : null;
       }
@@ -173,6 +178,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       ngRequired: '<',
       openOnFocus: '<',
       showIcon: '<',
+      name: '@',
       format: '@',
       placeholder: '@',
       loading: '<',

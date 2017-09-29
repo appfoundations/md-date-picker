@@ -1,7 +1,7 @@
 {
   "name": "md-date-picker",
   "description": "Angular Material Customizable Date Picker Directive",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "main": [
     "./dist/md-date-picker.js",
     "./dist/md-date-picker.css"
