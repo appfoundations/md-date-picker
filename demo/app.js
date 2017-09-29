@@ -68,4 +68,15 @@ app.controller('MainCtrl', function ($scope, $q, $timeout) {
       console.log('loading done after 1000ms');
     }, 1000)
   }
+
+  $scope.validate = function(){
+    // The requiredInput
+    $scope.frm.requiredInput.$validate();
+    $scope.frm.requiredInput.$setDirty();
+    $scope.frm.requiredInput.$setTouched();
+    // The requiredDate
+    $scope.frm.requiredDate.$validate();
+    $scope.frm.requiredDate.$setDirty();
+    $scope.frm.requiredDate.$setTouched();
+  }
 });

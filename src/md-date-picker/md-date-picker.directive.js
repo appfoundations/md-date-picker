@@ -7,9 +7,10 @@
           flex
           flex-order="2"
           type="text"
-          ng-value="model ? (model | date : format) : null"
+          ng-model="inputModel"
           ng-disabled="ngDisabled"
           ng-required="ngRequired"
+          name="{{name}}"
           ng-focus="openOnFocus ? openMenuHandler($mdMenu, $event) : null"
           ng-keypress="keypressMenuHandler($mdMenu, $event)"
           ng-keydown="keydownMenuHandler($mdMenu, $event)"
@@ -56,6 +57,9 @@
   function controller($scope, $filter, $element, $mdMenu) {
     const date = new Date();
     const dateFilter = $filter('date');
+
+    // Because this is required for ng-required and ng-diabled to work the validation css
+    $scope.inputModel = '';
 
     // Set deault view to current date, this model use as current calendar month view
     $scope.month = date.getMonth();
@@ -126,6 +130,7 @@
     this.$onChanges = (c) => {
       if (c.currentMonthViewDatesOnly) $scope.currentMonthViewDatesOnly = c.currentMonthViewDatesOnly.currentValue;
       if (c.placeholder) $element.find('input').attr('placeholder', c.placeholder.currentValue);
+      if (c.name) $scope.name = c.name.currentValue;
       if (c.format) $scope.format = c.format.currentValue || 'shortDate';
       if (c.dateFilter) $scope.dateFilter = c.dateFilter.currentValue || angular.noop;
       if (c.loading) $scope.loading = c.loading.currentValue;
@@ -137,6 +142,7 @@
       if (c.ngModel) {
         const date = c.ngModel.currentValue;
         $scope.model = date;
+        $scope.inputModel = $scope.model ? dateFilter($scope.model, $scope.format) : null;
         resetView(date);
         $scope.date = date ? date.toLocaleDateString() : null;
       }
@@ -233,6 +239,7 @@
       ngRequired: '<',
       openOnFocus: '<',
       showIcon: '<',
+      name: '@',
       format: '@',
       placeholder: '@',
       loading: '<',
