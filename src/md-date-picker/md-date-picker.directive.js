@@ -221,6 +221,7 @@
 
   function buildMonthNames(dateFilter) {
     const m = new Date();
+    m.setDate(1); // to avoid issues visualizing eg feb (28 days) on a 29th
     let months = {};
     for (let i = 0; i < 12; i++) {
       m.setMonth(i);
