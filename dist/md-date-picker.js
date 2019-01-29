@@ -163,6 +163,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   function buildMonthNames(dateFilter) {
     var m = new Date();
+    m.setDate(1); // to avoid issues visualizing eg feb (28 days) on a 29th
     var months = {};
     for (var i = 0; i < 12; i++) {
       m.setMonth(i);
