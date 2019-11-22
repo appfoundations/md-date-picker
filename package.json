@@ -1,6 +1,6 @@
 {
   "name": "md-date-picker",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Angular Material Customizable Date Picker Directive",
   "main": "./index.js",
   "dependencies": {
